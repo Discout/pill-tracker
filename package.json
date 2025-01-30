@@ -1,0 +1,17 @@
+{
+  "name": "pill-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "next start",
+    "dev": "next dev",
+    "build": "next build"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "date-fns": "latest",
+    "framer-motion": "latest"
+  }
+}
