@@ -9,10 +9,17 @@ const defaultMedications = {
 
 export default function PillTracker() {
   const [activeTab, setActiveTab] = useState("calendar");
-  const [data, setData] = useState(() => JSON.parse(localStorage.getItem("pill-tracker")) || generateInitialData());
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem("pill-tracker", JSON.stringify(data));
+    const storedData = JSON.parse(localStorage.getItem("pill-tracker")) || generateInitialData();
+    setData(storedData);
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      localStorage.setItem("pill-tracker", JSON.stringify(data));
+    }
   }, [data]);
 
   function generateInitialData() {
@@ -41,6 +48,8 @@ export default function PillTracker() {
       });
     }
   }
+
+  if (!data) return <p>Загрузка...</p>;
 
   return (
     <div className="p-6 max-w-lg mx-auto space-y-6 bg-gray-100 min-h-screen rounded-xl shadow-xl flex flex-col">
